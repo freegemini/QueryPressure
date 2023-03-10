@@ -15,6 +15,11 @@ public class MongoDBConnectionProvider : IConnectionProvider
     _collectionName = collectionName;
   }
 
+  public virtual Task<IServerInfo> GetServerInfoAsync(CancellationToken cancellationToken)
+  {
+    //TODO: (!!!) make this method abstract!
+    throw new NotImplementedException();
+  }
   public async Task<IExecutable> CreateExecutorAsync(IScriptSource scriptSource, ConnectionRequirement connectionRequirement,
       CancellationToken cancellationToken)
   {

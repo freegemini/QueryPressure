@@ -7,9 +7,9 @@ using QueryPressure.Core;
 using QueryPressure.Core.Interfaces;
 
 var token = CancellationToken.None;
-var loader = new Loader();
+var loader = new ConsoleApplicationLoader(args);
 
-var container = loader.Load(args);
+var container = loader.Load(new ContainerBuilder()).Build();
 
 var builder = container.Resolve<IScenarioBuilder>();
 var appArgs = container.Resolve<ApplicationArguments>();
