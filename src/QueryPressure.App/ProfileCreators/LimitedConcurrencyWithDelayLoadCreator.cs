@@ -5,7 +5,7 @@ using QueryPressure.Core.LoadProfiles;
 
 namespace QueryPressure.App.ProfileCreators;
 
-public class LimitedConcurrencyWithDelayLoadCreator : ICreator<IProfile>
+public class LimitedConcurrencyWithDelayLoadCreator : IProfileCreator
 {
   public string Type => "limitedConcurrencyWithDelay";
 
@@ -13,4 +13,9 @@ public class LimitedConcurrencyWithDelayLoadCreator : ICreator<IProfile>
           profile.ExtractIntArgumentOrThrow("limit"),
           profile.ExtractTimeSpanArgumentOrThrow("delay")
       );
+  public ArgumentDescriptor[] Arguments => new[]
+  {
+    new ArgumentDescriptor("limint", "int"),
+    new ArgumentDescriptor("delay","TimeSpan")
+  };
 }

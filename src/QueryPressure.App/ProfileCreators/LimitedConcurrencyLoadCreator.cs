@@ -5,12 +5,20 @@ using QueryPressure.Core.LoadProfiles;
 
 namespace QueryPressure.App.ProfileCreators;
 
-public class LimitedConcurrencyLoadCreator : ICreator<IProfile>
+
+
+public class LimitedConcurrencyLoadCreator : IProfileCreator
 {
   public string Type => "limitedConcurrency";
 
+  public ArgumentDescriptor[] Arguments => new[]
+  {
+    new ArgumentDescriptor("limint", "int")
+  };
+  
   public IProfile Create(ArgumentsSection profile)
   {
     return new LimitedConcurrencyLoadProfile(profile.ExtractIntArgumentOrThrow("limit"));
   }
+  
 }
